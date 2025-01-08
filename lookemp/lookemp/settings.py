@@ -44,6 +44,10 @@ INSTALLED_APPS = [
 
     # myapp
     'core.apps.CoreConfig',
+    'department.apps.DepartmentConfig',
+    'company.apps.CompanyConfig',
+    'payment.apps.PaymentConfig',
+    'other.apps.OtherConfig',
 ]
 
 MIDDLEWARE = [
