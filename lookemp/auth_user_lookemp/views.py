@@ -3,9 +3,13 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def transactions(request):
+def signup_l(request):
     pass
 
 
-def bonus(request):
+def signin_l(request):
+    pass
+
+
+def logout_l(request):
     pass
