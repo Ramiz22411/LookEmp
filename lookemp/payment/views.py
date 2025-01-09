@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def transactions(request):
+def transaction(request):
     pass
 
 
