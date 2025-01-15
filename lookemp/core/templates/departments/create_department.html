@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Создать клиента</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Главное</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Клиенты</a></li>
+                        <li class="breadcrumb-item active">Создать клиента</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <form method="post" id="create_form" name="create_form" class="card-body row g-3">
+                        {% csrf_token %}
+
+                        {% for f in form %}
+                            {% if f.name == 'weekend_days' %}
+                                <!-- Выпадающий список для выбора выходных -->
+                                <div class="col-12">
+                                    <label for="id_weekend_days" class="form-label">{{ f.label }}</label>
+                                    <select multiple name="weekend_days" id="id_weekend_days" class="form-select">
+                                        <option value="0">Monday</option>
+                                        <option value="1">Tuesday</option>
+                                        <option value="2">Wednesday</option>
+                                        <option value="3">Thursday</option>
+                                        <option value="4">Friday</option>
+                                        <option value="5">Saturday</option>
+                                        <option value="6">Sunday</option>
+                                    </select>
+                                    {% if f.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ f.errors|join:", " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% elif f.name == 'lateness_penalty' or f.name == 'close_attendance' or f.name == 'salary_for_lunch' %}
+                                <!-- Чекбоксы для специфических полей -->
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        {{ f|add_class:'form-check-input' }}
+                                        <label class="form-check-label" for="{{ f.id_for_label }}">
+                                            {{ f.label }}
+                                        </label>
+                                        {% if f.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ f.errors|join:", " }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <!-- Обычные поля -->
+                                <div class="col-md-6">
+                                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                                    {{ f|add_class:'form-control' }}
+                                    {% if f.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ f.errors|join:", " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </form>
+                    <div class="card-footer row justify-content-end">
+                        <button class="btn btn-primary col-auto" type="submit" form="create_form">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+{% endblock %}

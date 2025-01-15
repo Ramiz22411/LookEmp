@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # widget_tweaks
+    'widget_tweaks',
+
     # myapp
     'core.apps.CoreConfig',
     'department.apps.DepartmentConfig',

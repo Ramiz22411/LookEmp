@@ -126,7 +126,7 @@ $(document).ready(function () {
             }
             case 'modern-layout': {
                 $(".page-wrapper").attr("class", "page-wrapper compact-wrapper modern-sidebar" + boxed);
-                localStorage.setItem('page-wrapper', 'compact-wrapper modern-sidebar');
+                localStorage.setItem('p->age-wrapper', 'compact-wrapper modern-sidebar');
                 break;
             }
             case 'compact-layout': {
