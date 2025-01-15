@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Department(models.Model):
-    name_of_department = models.CharField(max_length=100)
+    name_of_department = models.CharField(max_length=100, verbose_name="Название Отдела")
     start_work_time = models.TimeField(verbose_name="Начало рабочего дня", blank=True, null=True)
     allowed_lateness = models.IntegerField(verbose_name="Фора опоздания в минутах")
     end_work_time = models.TimeField(verbose_name="Конец рабочего дня", blank=True, null=True)
@@ -43,20 +43,21 @@ class Department(models.Model):
 class Staff(models.Model):
     name = models.CharField(verbose_name="Имя(на англ)", max_length=100)
     surname = models.CharField(verbose_name="Фамилия(на англ)", max_length=100)
-    is_active = models.BooleanField(verbose_name="Статус", default=False, blank=True, null=True)
     date_of_birth = models.DateField(verbose_name="Дата Рождения")
+    is_active = models.BooleanField(verbose_name="Статус", default=False, blank=True, null=True)
     phone_number = models.CharField(verbose_name="Номер телефона", max_length=20, blank=True, null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="departments")
     salary_stratage = ArrayField(
         models.IntegerField(),
         size=2,
         verbose_name="Стратегия зп(месяц, час)",
     )
-    balance = models.IntegerField(verbose_name="Зарплата", default=0)
-    is_flexible_schedule = models.BooleanField(verbose_name="Персональный график сотрудника",
+    is_flexible_schedule = models.BooleanField(verbose_name="Кастомный график сотрудника",
                                                default=False, blank=True, null=True)
+
+    balance = models.IntegerField(verbose_name="Зарплата", default=0)
     start_time = models.TimeField(verbose_name="начало работы", blank=True, null=True)
     end_time = models.TimeField(verbose_name="конец работы", blank=True, null=True)
+
     company = models.ForeignKey(
         'company.Company',
         on_delete=models.CASCADE,
@@ -64,6 +65,8 @@ class Staff(models.Model):
         blank=True,
         null=True
     )
+    department = models.ForeignKey(Department, on_delete=models.CASCADE,
+                                   related_name="departments", verbose_name="Отдел")
 
     class Meta:
         verbose_name = "Сотрудник"

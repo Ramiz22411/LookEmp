@@ -58,6 +58,18 @@
                                         {% endif %}
                                     </div>
                                 </div>
+                            {% elif f.name == 'start_work_time' or f.name == 'end_work_time' or f.name == 'lunch_time'  or f.name == 'end_lunch' %}
+                                <!-- Поля для времени -->
+                                <div class="col-md-6">
+                                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                                    <input type="time" name="{{ f.name }}" id="{{ f.id_for_label }}"
+                                           class="form-control" value="{{ f.value|default_if_none:'' }}" required>
+                                    {% if f.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ f.errors|join:", " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
                             {% else %}
                                 <!-- Обычные поля -->
                                 <div class="col-md-6">
