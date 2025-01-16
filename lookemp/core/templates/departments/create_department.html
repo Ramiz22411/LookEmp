@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static widget_tweaks %}
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="page-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Создать клиента</h3>
+                    <h3>Создать Отдел</h3>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Главное</a></li>
-                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Клиенты</a></li>
-                        <li class="breadcrumb-item active">Создать клиента</li>
+                        <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Отделы</a></li>
+
                     </ol>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form method="post" id="create_form" name="create_form" class="card-body row g-3">
+                    <form method="post" id="create_form" name="create_form" class="card-body row g-4">
                         {% csrf_token %}
 
                         {% for f in form %}
