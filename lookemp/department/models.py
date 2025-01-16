@@ -22,6 +22,7 @@ class Department(models.Model):
         size=6,
         blank=True,
         null=True,
+        verbose_name='Выходной день'
     )
     company = models.ForeignKey('company.Company', on_delete=models.CASCADE,
                                 related_name="departments", blank=True, null=True)

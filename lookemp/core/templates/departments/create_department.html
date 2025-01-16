@@ -28,15 +28,36 @@
                                 <!-- Выпадающий список для выбора выходных -->
                                 <div class="col-12">
                                     <label for="id_weekend_days" class="form-label">{{ f.label }}</label>
-                                    <select multiple name="weekend_days" id="id_weekend_days" class="form-select">
-                                        <option value="0">Monday</option>
-                                        <option value="1">Tuesday</option>
-                                        <option value="2">Wednesday</option>
-                                        <option value="3">Thursday</option>
-                                        <option value="4">Friday</option>
-                                        <option value="5">Saturday</option>
-                                        <option value="6">Sunday</option>
-                                    </select>
+                                    <div id="id_weekend_days" class="form-select">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="0"> Понедельник
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="1"> Вторник
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="2"> Среда
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="3"> Четверг
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="4"> Пятница
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="5"> Суббота
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="weekend_days"
+                                                   value="6"> Воскресенье
+                                        </label>
+                                    </div>
                                     {% if f.errors %}
                                         <div class="invalid-feedback">
                                             {{ f.errors|join:", " }}
@@ -92,4 +113,5 @@
         </div>
     </div>
     <!-- Container-fluid Ends-->
+
 {% endblock %}

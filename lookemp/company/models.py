@@ -15,7 +15,7 @@ class Company(models.Model):
     balance = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
     created_at = models.DateTimeField(auto_now_add=True)
-    subscription_end = models.DateTimeField(null=True, blank=True)
+    subscription_end = models.DateTimeField(null=True, blank=True, verbose_name='Окончания подписки')
 
     def is_active(self):
         return self.status == 'active' and self.subscription_end >= date.today()

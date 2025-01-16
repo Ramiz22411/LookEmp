@@ -18,4 +18,5 @@ class CompanyCreateView(CreateView):
 
 class CompanyListView(ListView):
     model = Company
+    context_object_name = 'companies'
     template_name = 'company/company_ls.html'

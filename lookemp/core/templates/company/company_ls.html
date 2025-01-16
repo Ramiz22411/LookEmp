@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Список Компаний</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'company_list' %}">Компании</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Имя компании</th>
+                                <th>Баланс</th>
+                                <th>Статус</th>
+                                <th>Окончания подписки</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for company in companies %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ company.name }}</td>
+                                    <td>{{ company.balance }}</td>
+                                    <td>{{ company.status }}</td>
+                                    <td>{{ company.subscription_end }}</td>
+                                    <td>
+                                        <a href="{% url 'index' %}"
+                                           class="btn btn-sm btn-warning">
+                                            <i class="fa fa-pencil"></i> <!-- Карандашик -->
+                                        </a>
+                                        <form action="{% url 'index' %}" method="post"
+                                              style="display:inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i> <!-- Мусорка -->
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'create_staff' %}" class="btn btn-primary">Добавить сотрудника</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

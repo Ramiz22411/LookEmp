@@ -5,11 +5,10 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Создать клиента</h3>
+                    <h3>Создать сотрудника</h3>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Главное</a></li>
-                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Клиенты</a></li>
-                        <li class="breadcrumb-item active">Создать клиента</li>
+                        <li class="breadcrumb-item"><a href="{% url 'list_staff' %}">Главное</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'list_staff' %}">Сотрудники</a></li>
                     </ol>
                 </div>
             </div>
@@ -26,11 +25,24 @@
                             {% if f.name == 'salary_stratage' %}
                                 <!-- Выпадающий список для выбора выходных -->
                                 <div class="col-6">
-                                    <label for="id_weekend_days" class="form-label">{{ f.label }}</label>
-                                    <select multiple name="weekend_days" id="id_weekend_days" class="form-select">
-                                        <option value="0">Month</option>
-                                        <option value="1">Hours</option>
-                                    </select>
+                                    <label class="form-label">{{ f.label }}</label>
+                                    <div class="form-check">
+                                        <input type="radio" name="salary_strategy" value="0" id="id_salary_month"
+                                               class="form-check-input"
+                                               {% if f.value == '0' %}checked{% endif %}>
+                                        <label for="id_salary_month" class="form-check-label">Month</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" name="salary_strategy" value="1" id="id_salary_hours"
+                                               class="form-check-input"
+                                               {% if f.value == '1' %}checked{% endif %}>
+                                        <label for="id_salary_hours" class="form-check-label">Hours</label>
+                                    </div>
+                                    {% if f.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ f.errors|join:", " }}
+                                        </div>
+                                    {% endif %}
                                     {% if f.errors %}
                                         <div class="invalid-feedback">
                                             {{ f.errors|join:", " }}
@@ -70,6 +82,20 @@
                                     <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
                                     <input type="date" name="{{ f.name }}" id="{{ f.id_for_label }}"
                                            class="form-control" value="{{ f.value|date:'Y-m-d' }}">
+                                    {% if f.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ f.errors|join:", " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% elif f.name == 'phone_number' %}
+                                <div class="col-md-6">
+                                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                                    <input type="tel" name="{{ f.name }}" id="{{ f.id_for_label }}"
+                                           class="form-control form-control-sm" value="{{ f.value|default:'' }}"
+                                           placeholder="+998 906562138"
+                                           pattern="\+?[0-9]{1,4}[\s\-]?[0-9]{1,14}([\s\-]?[0-9]{1,13})?"
+                                           title="Phone number format: +123 456 7890" required>
                                     {% if f.errors %}
                                         <div class="invalid-feedback">
                                             {{ f.errors|join:", " }}
