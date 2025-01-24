@@ -1,18 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 
 User = get_user_model()
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomBaseUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'roles', 'company', 'email', 'password1', 'password2')
+        fields = ('username', 'roles', 'company', 'password1', 'password2')
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-
-        if commit:
-            user.save()
-        return user

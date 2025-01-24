@@ -43,25 +43,20 @@
 
             <li class="menu-item">
                 <a href="#menuExtendedui" data-bs-toggle="collapse" class="menu-link waves-effect">
-                    <span class="menu-icon"><i data-lucide="layers-3"></i></span>
-                    <span class="menu-text"> Components </span>
+                    <span class="menu-icon"><i data-lucide="building-2"></i></span>
+                    <span class="menu-text"> Компания </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="menuExtendedui">
                     <ul class="sub-menu">
                         <li class="menu-item">
-                            <a class='menu-link' href='components-range-slider.html'>
-                                <span class="menu-text">Range Slider</span>
+                            <a class='menu-link' href='{% url 'company_create' %}'>
+                                <span class="menu-text">Добавить Компанию</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class='menu-link' href='components-sweet-alert.html'>
-                                <span class="menu-text">Sweet Alert</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class='menu-link' href='components-loading-buttons.html'>
-                                <span class="menu-text">Loading Buttons</span>
+                            <a class='menu-link' href='{% url 'company_list' %}'>
+                                <span class="menu-text">Список компаний</span>
                             </a>
                         </li>
                     </ul>
@@ -70,8 +65,8 @@
 
             <li class="menu-item">
                 <a href="#menuMultilevel" data-bs-toggle="collapse" class="menu-link waves-effect">
-                    <span class="menu-icon"><i data-lucide="share-2"></i></span>
-                    <span class="menu-text"> Отделы и сотрудники </span>
+                    <span class="menu-icon"><i data-lucide="briefcase-business"></i></span>
+                    <span class="menu-text">Отделы и сотрудники</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="menuMultilevel">
@@ -84,12 +79,12 @@
                             <div class="collapse" id="menuMultilevel2">
                                 <ul class="sub-menu">
                                     <li class="menu-item">
-                                        <a href="javascript: void(0);" class="menu-link">
+                                        <a href="{% url 'create_department' %}" class="menu-link">
                                             <span class="menu-text">Создать отдел</span>
                                         </a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="javascript: void(0);" class="menu-link">
+                                        <a href="{% url 'list_department' %}" class="menu-link">
                                             <span class="menu-text">Список отделов</span>
                                         </a>
                                     </li>
@@ -105,18 +100,38 @@
                             <div class="collapse" id="menuMultilevel3">
                                 <ul class="sub-menu">
                                     <li class="menu-item">
-                                        <a href="javascript: void(0);" class="menu-link">
+                                        <a href="{% url 'create_staff' %}" class="menu-link">
                                             <span class="menu-text">Добавить сотрудника</span>
                                         </a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#menuMultilevel3" data-bs-toggle="collapse"
-                                           class="menu-link waves-effect">
+                                        <a href="{% url 'list_staff' %}" class="menu-link waves-effect">
                                             <span class="menu-text">Список сотрудников</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-item">
+                <a href="#menuExtendedui1" data-bs-toggle="collapse" class="menu-link waves-effect">
+                    <span class="menu-icon"><i data-lucide="user-round"></i></span>
+                    <span class="menu-text"> Пользователь </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="menuExtendedui1">
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a class='menu-link' href='{% url 'create_user' %}'>
+                                <span class="menu-text">Добавить пользователя</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a class='menu-link' href='{% url 'list_users' %}'>
+                                <span class="menu-text">Список пользователей</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

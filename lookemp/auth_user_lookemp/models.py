@@ -10,10 +10,10 @@ class CustomUser(AbstractUser):
         ("system_manager", "Менеджер (Система)"),
         ("admin_company", "Администратор (Компании)"),
         ("manager_company", "Менеджер (Компании)"),
-        ('tech_support', "Техподержка (Система)")
+        ('tech_support', "Техподдержка (Система)")
     ]
 
-    email = models.EmailField(verbose_name="Email", max_length=254, unique=True)
+    email = models.EmailField(verbose_name="Email", max_length=255)
     roles = models.CharField(
         max_length=100,
         choices=ROLE_CHOICES
