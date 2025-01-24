@@ -21,13 +21,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('auth_lookemp/', include('auth_user_lookemp.urls')),
-    path('company/', include('company.urls')),
-    path('department/', include('department.urls')),
-    path('other/', include('other.urls')),
-    path('payment/', include('payment.urls')),
-    path('visit/', include('visit.urls')),
+    path('', include('core.urls'), name='core'),
+    path('auth_lookemp/', include('auth_user_lookemp.urls'), name='lookemp_user'),
+    path('company/', include('company.urls'), name='company'),
+    path('department/', include('department.urls'), name='department'),
+    path('other/', include('other.urls'), name='other'),
+    path('payment/', include('payment.urls'), name='payment'),
+    path('visit/', include('visit.urls'), name='visit'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

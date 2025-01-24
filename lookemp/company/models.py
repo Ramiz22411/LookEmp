@@ -11,10 +11,10 @@ class Company(models.Model):
         ('on_subscription', 'On_subscription'),
     )
 
-    name = models.CharField(max_length=100)
-    balance = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
-    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=100, verbose_name='Имя компании')
+    balance = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Баланс")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active', verbose_name="Статус")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Время Создания")
     subscription_end = models.DateTimeField(null=True, blank=True, verbose_name='Окончания подписки')
 
     def is_active(self):

@@ -1,66 +1,126 @@
-{% load static %}
-<!-- Page Sidebar Start-->
-<header class="main-nav">
-    <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i
-            data-feather="settings"></i></a><img class="img-90 rounded-circle"
-                                                 src="{% static '/assets/images/dashboard/1.png' %}" alt="">
-        <div class="badge-bottom"><span class="badge badge-primary">New</span></div>
-        <a href="user-profile.html">
-            <h6 class="mt-3 f-14 f-w-600">Emay Walter</h6></a>
-        <p class="mb-0 font-roboto">Human Resources Department</p>
+{% load static widget_tweaks %}
+<!-- ========== Left Sidebar ========== -->
+<div class="main-menu">
+    <!-- Brand Logo -->
+    <div class="logo-box">
+        <!-- Brand Logo Light -->
+        <a class='logo-light' href='index.htm'>
+            <img src="{% static 'assets/images/logo-light.png' %}" alt="logo" class="logo-lg" height="18">
+            <img src="{% static 'assets/images/logo-sm.png' %}" alt="small logo" class="logo-sm" height="24">
+        </a>
+
+        <!-- Brand Logo Dark -->
+        <a class='logo-dark' href='index.htm'>
+            <img src="{% static 'assets/images/logo-dark.png' %}" alt="dark logo" class="logo-lg" height="18">
+            <img src="{% static 'assets/images/logo-sm.png' %}" alt="small logo" class="logo-sm" height="24">
+        </a>
     </div>
-    <nav>
-        <div class="main-navbar">
-            <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-            <div id="mainnav">
-                <ul class="nav-menu custom-scrollbar">
-                    <li class="back-btn">
-                        <div class="mobile-back text-end">
-                            <span>Назад</span>
-                            <i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
-                        </div>
-                    </li>
-                    <li class="sidebar-main-title">
-                        <div>
-                            <h6>Компания</h6>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a class="nav-link menu-title" href="javascript:void(0)">
-                            <i data-feather="list"></i>
-                            <span>Список Компаний</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="nav-link menu-title" href="javascript:void(0)">
-                            <i data-feather="plus-circle"></i>
-                            <span>Создать Компанию</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-main-title">
-                        <div>
-                            <h6>Отдел и сотрудники</h6>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a class="nav-link menu-title dropdown-toggle" href="javascript:void(0)"
-                           data-bs-toggle="dropdown">
-                            <i data-feather="grid"></i>
-                            <span>Отделы и Сотрудники</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Список Отделов</a></li>
-                            <li><a class="dropdown-item" href="#">Создать Отдел</a></li>
-                            <li><a class="dropdown-item" href="#">Список Сотрудников</a></li>
-                            <li><a class="dropdown-item" href="#">Создать Сотрудника</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
-        </div>
-    </nav>
 
+    <!--- Menu -->
+    <div data-simplebar="">
+        <ul class="app-menu">
 
-</header>
-<!-- Page Sidebar Ends-->
+            <li class="menu-title">Menu</li>
+
+            <li class="menu-item">
+                <a class='menu-link waves-effect' href='index.htm'>
+                    <span class="menu-icon"><i data-lucide="airplay "></i></span>
+                    <span class="menu-text"> Dashboards </span>
+                    <span class="badge bg-info rounded-pill ms-auto">3</span>
+                </a>
+            </li>
+
+            <li class="menu-title">Custom</li>
+
+            <li class="menu-item">
+                <a class='menu-link waves-effect' href='apps-calendar.html'>
+                    <span class="menu-icon"><i data-lucide="calendar"></i></span>
+                    <span class="menu-text"> Calendar </span>
+                </a>
+            </li>
+
+            <li class="menu-title">Components</li>
+
+            <li class="menu-item">
+                <a href="#menuExtendedui" data-bs-toggle="collapse" class="menu-link waves-effect">
+                    <span class="menu-icon"><i data-lucide="layers-3"></i></span>
+                    <span class="menu-text"> Components </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="menuExtendedui">
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a class='menu-link' href='components-range-slider.html'>
+                                <span class="menu-text">Range Slider</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a class='menu-link' href='components-sweet-alert.html'>
+                                <span class="menu-text">Sweet Alert</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a class='menu-link' href='components-loading-buttons.html'>
+                                <span class="menu-text">Loading Buttons</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="menu-item">
+                <a href="#menuMultilevel" data-bs-toggle="collapse" class="menu-link waves-effect">
+                    <span class="menu-icon"><i data-lucide="share-2"></i></span>
+                    <span class="menu-text"> Отделы и сотрудники </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="menuMultilevel">
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href="#menuMultilevel2" data-bs-toggle="collapse" class="menu-link waves-effect">
+                                <span class="menu-text"> Отдел </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="menuMultilevel2">
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a href="javascript: void(0);" class="menu-link">
+                                            <span class="menu-text">Создать отдел</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="javascript: void(0);" class="menu-link">
+                                            <span class="menu-text">Список отделов</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="#menuMultilevel3" data-bs-toggle="collapse" class="menu-link waves-effect">
+                                <span class="menu-text">Сотрудники</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="menuMultilevel3">
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a href="javascript: void(0);" class="menu-link">
+                                            <span class="menu-text">Добавить сотрудника</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#menuMultilevel3" data-bs-toggle="collapse"
+                                           class="menu-link waves-effect">
+                                            <span class="menu-text">Список сотрудников</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
