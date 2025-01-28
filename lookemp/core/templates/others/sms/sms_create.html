@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Создать компанию</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'company_list' %}">Компании</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <form method="post" id="create_form" name="create_form" class="card-body row g-4">
+                        {% csrf_token %}
+                        <!-- Поле для выбора сотрудников -->
+                        <div class="col-md-12">
+                            <label for="chosen_staff" class="form-label">Выбрать сотрудников</label>
+                            <select name="chosen_staff" id="chosen_staff" class="form-control select2" multiple>
+                                {% for staff in form.fields.chosen_staff.queryset %}
+                                    <option value="{{ staff.pk }}"
+                                            {% if staff.pk in form.initial.chosen_staff %}selected{% endif %}>
+                                        {{ staff }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.chosen_staff.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.chosen_staff.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Другие поля формы -->
+                        {% for field in form %}
+                            {% if field.name != 'chosen_staff' %}
+                                <div class="col-md-6">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                    {{ field|add_class:"form-control" }}
+                                    {% if field.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ field.errors|join:", " }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </form>
+
+                    <!-- Кнопки -->
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary" type="submit" form="create_form">
+                            Сохранить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends -->
+{% endblock %}
+{% block extra_scripts %}
+    <script>
+        $(document).ready(function () {
+            // Инициализация Select2 с ограничением выбора
+            $('#chosen_staff').select2({
+                maximumSelectionLength: 5, // Установите максимум выбранных элементов (замените на нужное число)
+                placeholder: "Выберите сотрудников", // Добавьте плейсхолдер, если нужно
+                allowClear: true // Если нужно разрешить сброс выбора
+            });
+        });
+    </script>
+{% endblock %}

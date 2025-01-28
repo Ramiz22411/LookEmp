@@ -5,10 +5,11 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Список отделов</h3>
+                    <h3>Список сотрудников</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
                         <li class="breadcrumb-item"><a href="{% url 'list_staff' %}">Сотрудники</a></li>
+
                     </ol>
                 </div>
             </div>
@@ -23,18 +24,18 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Название</th>
-                                <th>Начало рабочего дня</th>
-                                <th>Конец рабочего дня</th>
+                                <th>Названия события</th>
+                                <th>Начало</th>
+                                <th>Конец</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for department in departments %}
+                            {% for event in events %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td>{{ department.name_of_department }}</td>
-                                    <td>{{ department.start_work_time }}</td>
-                                    <td>{{ department.end_work_time }}</td>
+                                    <td>{{ event.name }}</td>
+                                    <td>{{ event.surname }}</td>
+                                    <td>{{ event.balance }}</td>
                                     <td>
                                         <a href="{% url '/' %}"
                                            class="btn btn-sm btn-warning">
@@ -54,7 +55,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'create_department' %}" class="btn btn-primary">Добавить отдел</a>
+                        <a href="{% url 'event' %}" class="btn btn-primary">Добавить события</a>
                     </div>
                 </div>
             </div>

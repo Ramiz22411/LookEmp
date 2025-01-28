@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Создать сотрудников</h3>
+                    <h3>Список сотрудников</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
                         <li class="breadcrumb-item"><a href="{% url 'list_staff' %}">Сотрудники</a></li>
@@ -37,11 +37,11 @@
                                     <td>{{ staff.surname }}</td>
                                     <td>{{ staff.balance }}</td>
                                     <td>
-                                        <a href="{% url '/' %}"
+                                        <a href="{% url 'index' %}"
                                            class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i> <!-- Карандашик -->
                                         </a>
-                                        <form action="{% url '/' %}" method="post"
+                                        <form action="{% url 'index' %}" method="post"
                                               style="display:inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger">

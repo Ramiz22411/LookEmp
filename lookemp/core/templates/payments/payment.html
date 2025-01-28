@@ -5,11 +5,10 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Создать Пользователя</h3>
+                    <h3></h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
-                        <li class="breadcrumb-item"><a href="{% url 'list_users' %}">Пользователи</a></li>
-
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Список оплат</a></li>
                     </ol>
                 </div>
             </div>
@@ -20,19 +19,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form method="post" id="create_form" action="{% url 'create_user' %}" name="create_form"
+                    <form method="post" id="create_form" action="{% url 'transaction' %}" name="create_form"
                           class="card-body row g-4">
                         {% csrf_token %}
-                        {{ form.non_field_errors }}
                         {% for field in form %}
                             <div class="col-md-8">
                                 <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                                 {{ field|add_class:"form-control" }}
-                                {% if field.errors %}
-                                    <div class="text-danger">
-                                        {{ field.errors }}
-                                    </div>
-                                {% endif %}
+                                <div class="invalid-feedback" id="error-{{ field.name }}"></div>
                             </div>
                         {% endfor %}
                     </form>

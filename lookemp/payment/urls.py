@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('transaction/', views.transaction, name='transaction'),
-    path('bonus/', views.bonus, name='bonus'),
+    path('transaction/', views.CreatePaymentTransactionAtomic.as_view(), name='transaction'),
+    path('bonus/', views.CreatePaymentBonusAtomic.as_view(), name='bonus'),
 ]

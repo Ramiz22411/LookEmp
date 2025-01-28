@@ -17,8 +17,6 @@ class PaymentTransaction(models.Model):
     def __str__(self):
         return f"Transaction {self.staff.name} - {self.quantity}"
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
 class BonusTransaction(models.Model):
     staff = models.ForeignKey('department.Staff', on_delete=models.CASCADE)
@@ -35,5 +33,3 @@ class BonusTransaction(models.Model):
     def __str__(self):
         return f"Transaction {self.staff.name} - {self.quantity}"
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)

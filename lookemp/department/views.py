@@ -32,3 +32,4 @@ class StaffCreateView(CreateView):
 class StaffListView(ListView):
     model = Staff
     template_name = 'departments/staff_list.html'
+    context_object_name = 'staffs'
