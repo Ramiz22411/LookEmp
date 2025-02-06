@@ -49,7 +49,7 @@ class SmsMessageView(CreateView):
 class SmsMessageListView(ListView):
     model = SmsMessage
     context_object_name = 'messages'
-    template_name = 'others/sms/sms_create.html'
+    template_name = 'others/sms/sms_list.html'
 
 
 class VocationView(CreateView):
