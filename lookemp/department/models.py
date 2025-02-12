@@ -5,15 +5,6 @@ from django.db import models
 # Create your models here.
 
 class Department(models.Model):
-    WEEKEND_DAYS = [
-        ('Monday', 'Понедельник'),
-        ('Tuesday', 'Вторник'),
-        ('Wednesday', 'Среда'),
-        ('Thursday', 'Четверг'),
-        ('Friday', 'Пятница'),
-        ('Saturday', 'Суббота'),
-        ('Sunday', 'Воскресения'),
-    ]
     name_of_department = models.CharField(max_length=100, verbose_name="Название Отдела")
     start_work_time = models.TimeField(verbose_name="Начало рабочего дня", blank=True, null=True)
     allowed_lateness = models.IntegerField(verbose_name="Фора опоздания в минутах")
@@ -26,13 +17,13 @@ class Department(models.Model):
     allowed_lunch_time = models.IntegerField(verbose_name="Фора за посешение обеда")
     end_lunch = models.TimeField(verbose_name="Конец Обеда", blank=True, null=True)
     salary_for_lunch = models.BooleanField(verbose_name="Начисления зп за обед")
-    weekend_days = models.CharField(
-        choices=WEEKEND_DAYS,
+    weekend_days = ArrayField(
+        base_field=models.CharField(max_length=50),
+        size=6,
         blank=True,
         null=True,
-        verbose_name='Выходной день'
+        verbose_name='Входной день'
     )
-
     company = models.ForeignKey('company.Company', on_delete=models.CASCADE,
                                 related_name="departments", blank=True, null=True)
 
@@ -63,6 +54,8 @@ class Staff(models.Model):
     salary_stratage = models.CharField(
         choices=SALARY_STRATEGY,
         verbose_name="Стратегия зп(месяц, час)",
+        blank=True,
+        null=True
     )
     is_flexible_schedule = models.BooleanField(verbose_name="Кастомный график сотрудника",
                                                default=False, blank=True, null=True)

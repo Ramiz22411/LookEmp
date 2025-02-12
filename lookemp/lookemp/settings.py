@@ -138,5 +138,6 @@ MEDIA_ROOT = path.join(BASE_DIR, 'core/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = '/auth_lookemp/signin'
 AUTH_USER_MODEL = 'auth_user_lookemp.CustomUser'
 

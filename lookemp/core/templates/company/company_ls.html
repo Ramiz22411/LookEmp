@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static widget_tweaks %}
 {% block content %}
     <div class="container-fluid">
         <div class="page-header">
@@ -38,11 +38,15 @@
                                     <td>{{ company.status }}</td>
                                     <td>{{ company.subscription_end }}</td>
                                     <td>
-                                        <a href="{% url 'index' %}"
+                                        <a href="{% url 'company_detail' company.id %}"
+                                           class="btn btn-sm btn-info">
+                                            <i class="fa fa-eye"></i> Подробнее
+                                        </a>
+                                        <a href="{% url 'company_update' company.id %}"
                                            class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i> <!-- Карандашик -->
                                         </a>
-                                        <form action="{% url 'index' %}" method="post"
+                                        <form action="{% url 'company_delete' company.id %}" method="post"
                                               style="display:inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger">
@@ -56,7 +60,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'create_staff' %}" class="btn btn-primary">Добавить сотрудника</a>
+                        <a href="{% url 'company_create' %}" class="btn btn-primary">Добавить Компанию</a>
                     </div>
                 </div>
             </div>

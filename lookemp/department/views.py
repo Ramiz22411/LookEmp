@@ -48,7 +48,7 @@ class StaffCreateView(CreateView):
     model = Staff
     template_name = 'departments/create_staff.html'
     form_class = StaffForm
-    success_url = '/'
+    success_url = '/staff_list'
 
     def form_valid(self, form):
         return super().form_valid(form)
