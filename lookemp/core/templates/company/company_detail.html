@@ -55,7 +55,7 @@
                             {% for department in company.departments.all %}
                                 <li class="list-group-item">
                                     {{ department.name_of_department }}
-                                    <a href="{% url 'index' department.id %}"
+                                    <a href="{% url 'index' %}"
                                        class="btn btn-sm btn-info float-end">
                                         Подробнее
                                     </a>
@@ -91,7 +91,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for employee in company.staffs.all %}
+                            {% for employee in company.employees.all %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ employee.name }}</td>
@@ -107,14 +107,14 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="{% url 'index'  %}" class="btn btn-sm btn-info">
+                                        <a href="{% url 'index' %}" class="btn btn-sm btn-info">
                                             <i class="fa fa-eye"></i> Подробнее
                                         </a>
-                                        <a href="{% url 'employee_update' employee.id %}"
+                                        <a href="{% url 'index' %}"
                                            class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <form action="{% url 'index'  %}" method="post"
+                                        <form action="{% url 'index' %}" method="post"
                                               style="display:inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger">

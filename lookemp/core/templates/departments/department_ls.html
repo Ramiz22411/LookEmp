@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static widget_tweaks %}
 {% block content %}
     <div class="container-fluid">
         <div class="page-header">
@@ -26,6 +26,7 @@
                                 <th>Название</th>
                                 <th>Начало рабочего дня</th>
                                 <th>Конец рабочего дня</th>
+                                <th>Выходные</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,11 +37,38 @@
                                     <td>{{ department.start_work_time }}</td>
                                     <td>{{ department.end_work_time }}</td>
                                     <td>
-                                        <a href=""
+                                        {% for department in department.weekend_days %}
+                                            {% if department == '0' %}
+                                                ПН
+                                            {% elif department == '1' %}
+                                                ВТ
+                                            {% elif department == '2' %}
+                                                СР
+                                            {% elif department == '3' %}
+                                                ЧТ
+                                            {% elif department == '4' %}
+                                                ПТ
+                                            {% elif department == '5' %}
+                                                СБ
+                                            {% elif department == '6' %}
+                                                ВС
+                                            {% else %}
+                                                None
+                                            {% endif %}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'department_detail' department.id %}"
+                                           class="btn btn-sm btn-info">
+                                            <i class="fa fa-eye"></i> Подробнее
+                                        </a>
+                                        <a href="{% url 'edit_department' department.id %}"
                                            class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i> <!-- Карандашик -->
                                         </a>
-                                        <form action="" method="post"
+                                        <form action="{% url 'delete_department' department.id %}" method="post"
                                               style="display:inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger">

@@ -18,8 +18,9 @@ class Department(models.Model):
     end_lunch = models.TimeField(verbose_name="Конец Обеда", blank=True, null=True)
     salary_for_lunch = models.BooleanField(verbose_name="Начисления зп за обед")
     weekend_days = ArrayField(
-        base_field=models.CharField(max_length=50),
-        size=6,
+        base_field=models.CharField(),
+        default=list,
+        size=7,
         blank=True,
         null=True,
         verbose_name='Входной день'
@@ -51,7 +52,7 @@ class Staff(models.Model):
     date_of_birth = models.DateField(verbose_name="Дата Рождения")
     is_active = models.BooleanField(verbose_name="Статус", default=False, blank=True, null=True)
     phone_number = models.CharField(verbose_name="Номер телефона", max_length=20, blank=True, null=True)
-    salary_stratage = models.CharField(
+    salary_strategy = models.CharField(
         choices=SALARY_STRATEGY,
         verbose_name="Стратегия зп(месяц, час)",
         blank=True,
@@ -72,7 +73,7 @@ class Staff(models.Model):
         null=True
     )
     department = models.ForeignKey(Department, on_delete=models.CASCADE,
-                                   related_name="departments", verbose_name="Отдел")
+                                   related_name="staff", verbose_name="Отдел")
 
     class Meta:
         verbose_name = "Сотрудник"

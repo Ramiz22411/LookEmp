@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>{{ company.name }}</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'company_list' %}">Компании</a></li>
+                        <li class="breadcrumb-item active">{{ company.name }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Информация об отделе -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Информация об отделе</h4>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Отдел:</strong> {{ department.name_of_department }}</p>
+                        <p><strong>
+                            Начало - конец рабочего дня:
+                        </strong> {{ department.start_work_time }}-{{ department.end_work_time }}</p>
+                        <p><strong>Выходные дни:</strong>
+                            {% for day in department.weekend_days %}
+
+                                {% if day == "0" %}
+                                    ПН
+                                {% elif day == "1" %}
+                                    ВТ
+                                {% elif day == "2" %}
+                                    СР
+                                {% elif day == "3" %}
+                                    ЧТ
+                                {% elif day == "4" %}
+                                    ПТ
+                                {% elif day == "5" %}
+                                    СБ
+                                {% elif day == "6" %}
+                                    ВС
+                                {% endif %}
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'edit_department' department.id %}" class="btn btn-warning">
+                            <i class="fa fa-pencil"></i> Редактировать
+                        </a>
+                        <form action="{% url 'delete_department' department.id %}" method="post"
+                              style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash"></i> Удалить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Сотрудники компании -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Сотрудники</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Имя</th>
+                                    <th>Фамилия</th>
+                                    <th>Телефон</th>
+                                    <th>Отдел</th>
+                                    <th>Зарплата</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for employee in department.staff.all %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ employee.name }}</td>
+                                        <td>{{ employee.surname }}</td>
+                                        <td>{{ employee.phone_number|default:"-" }}</td>
+                                        <td>{{ employee.department.name_of_department }}</td>
+                                        <td>{{ employee.balance }}</td>
+                                        <td>
+                                            <a href="{% url 'index' %}" class="btn btn-sm btn-info">
+                                                <i class="fa fa-eye"></i> Подробнее
+                                            </a>
+                                            <a href="{% url 'index' %}"
+                                               class="btn btn-sm btn-warning">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <form action="{% url 'index' %}" method="post"
+                                                  style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="text-center">Нет сотрудников</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'create_staff' %}" class="btn btn-primary">Добавить Сотрудника</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

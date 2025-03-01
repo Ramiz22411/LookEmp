@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a6d28b9-554b-4330-9b7b-e150650a9751" name="Changes" comment="updated user creation">
-      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/company/company_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/company/update_company.html" afterDir="false" />
+    <list default="true" id="3a6d28b9-554b-4330-9b7b-e150650a9751" name="Changes" comment="small fix">
+      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/departments/department_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/departments/update_department.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lookemp/company/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/company/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lookemp/company/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/company/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/auth_user_lookemp/user_ls.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/auth_user_lookemp/user_ls.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/company/company_ls.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/company/company_ls.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/company/company_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/company/company_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/departments/create_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/departments/create_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/departments/create_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/departments/create_staff.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/departments/department_ls.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/departments/department_ls.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/department/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/department/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lookemp/department/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/department/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/department/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/department/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lookemp/department/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/department/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lookemp/lookemp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/lookemp/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +190,11 @@
       <workItem from="1738832865067" duration="409000" />
       <workItem from="1738834094919" duration="11098000" />
       <workItem from="1738906086398" duration="5841000" />
+      <workItem from="1739354223502" duration="4573000" />
+      <workItem from="1739441910457" duration="6595000" />
+      <workItem from="1739509672667" duration="1954000" />
+      <workItem from="1739526410215" duration="8379000" />
+      <workItem from="1740737799722" duration="4142000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -221,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738836086259</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="small fix">
+      <option name="closed" value="true" />
+      <created>1739354254445</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739354254445</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +246,8 @@
     <MESSAGE value="init project" />
     <MESSAGE value="static updated" />
     <MESSAGE value="updated user creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated user creation" />
+    <MESSAGE value="small fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="small fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

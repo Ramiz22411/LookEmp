@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import StaffForm
+from .forms import StaffForm, DepartmentForm
 from .models import Department, Staff
 
 
@@ -11,21 +11,7 @@ from .models import Department, Staff
 class DepartmentCreateView(LoginRequiredMixin, CreateView):
     model = Department
     template_name = 'departments/create_department.html'
-    fields = [
-        'name_of_department',
-        'start_work_time',
-        'allowed_lateness',
-        'end_work_time',
-        'lateness_penalty',
-        'lateness_penalty_per_min',
-        'sum_penalty',
-        'close_attendance',
-        'lunch_time',
-        'allowed_lunch_time',
-        'end_lunch',
-        'salary_for_lunch',
-        'weekend_days'
-    ]
+    form_class = DepartmentForm
     success_url = '/department/list'
 
     def form_valid(self, form):
@@ -38,23 +24,51 @@ class DepartmentCreateView(LoginRequiredMixin, CreateView):
             return redirect('/')  # Укажите страницу ошибки
 
 
-class DepartmentListView(ListView):
+class DepartmentListView(LoginRequiredMixin, ListView):
     model = Department
     template_name = 'departments/department_ls.html'
     context_object_name = 'departments'
 
 
-class StaffCreateView(CreateView):
+class EditDepartmentView(LoginRequiredMixin, UpdateView):
+    model = Department
+    template_name = 'departments/update_department.html'
+    context_object_name = 'departments'
+    form_class = DepartmentForm
+    success_url = '/department/list'
+
+
+class DeleteDepartmentView(LoginRequiredMixin, DeleteView):
+    model = Department
+    success_url = '/department/list'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+
+class DepartmentDetailView(LoginRequiredMixin, DetailView):
+    model = Department
+    template_name = 'departments/department_detail.html'
+    context_object_name = 'department'
+
+
+class StaffCreateView(LoginRequiredMixin, CreateView):
     model = Staff
     template_name = 'departments/create_staff.html'
     form_class = StaffForm
     success_url = '/staff_list'
 
     def form_valid(self, form):
-        return super().form_valid(form)
+        user = self.request.user
+        if hasattr(user, 'company'):  # Проверяем, есть ли у пользователя связанная компания
+            form.instance.company = user.company
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, "Ошибка: У вашего пользователя нет привязанной компании.")
+            return redirect('/')  # Укажите страницу ошибки
 
 
-class StaffListView(ListView):
+class StaffListView(LoginRequiredMixin, ListView):
     model = Staff
     template_name = 'departments/staff_list.html'
     context_object_name = 'staffs'
