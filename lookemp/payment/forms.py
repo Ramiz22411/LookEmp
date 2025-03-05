@@ -6,7 +6,7 @@ from .models import PaymentTransaction, BonusTransaction
 class PaymentTransactionAtomicForm(ModelForm):
     class Meta:
         model = PaymentTransaction
-        fields = ('quantity', 'comment', 'staff', 'company')
+        fields = ('quantity', 'comment', 'staff')
 
 
 class BonusPaymentTransactionAtomicForm(ModelForm):

@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static widget_tweaks %}
 {% block content %}
     <div class="container-fluid">
         <div class="page-header">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Список сотрудников</h3>
+                    <h3>Список оплат</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{% url 'list_department' %}">Главное</a></li>
                         <li class="breadcrumb-item"><a href="{% url 'list_staff' %}">Сотрудники</a></li>
-
                     </ol>
                 </div>
             </div>
@@ -24,20 +23,20 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Имя</th>
-                                <th>Фамилия</th>
-                                <th>Баланс</th>
+                                <th>Сумма списания</th>
+                                <th>Комментарий</th>
+                                <th>Сотрудник</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for staff in staffs %}
+                            {% for payment in payments %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td>{{ staff.name }}</td>
-                                    <td>{{ staff.surname }}</td>
-                                    <td>{{ staff.balance }}</td>
+                                    <td>{{ payment.quantity }}</td>
+                                    <td>{{ payment.comment }}</td>
+                                    <td>{{ payment.staff }}</td>
                                     <td>
-                                        <a href="{% url 'index' %}"
+                                        <a href="{% url 'transaction_update' payment.id %}"
                                            class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i> <!-- Карандашик -->
                                         </a>
@@ -48,9 +47,6 @@
                                                 <i class="fa fa-trash"></i> <!-- Мусорка -->
                                             </button>
                                         </form>
-                                        <a href="{% url 'transaction' %}" class="btn btn-sm btn-success">
-                                            <i class="fa fa-credit-card"></i> Оплата
-                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -58,7 +54,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'create_staff' %}" class="btn btn-primary">Добавить сотрудника</a>
+                        <a href="{% url 'transaction' %}" class="btn btn-primary">Произвести оплату</a>
                     </div>
                 </div>
             </div>

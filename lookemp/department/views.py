@@ -12,7 +12,7 @@ class DepartmentCreateView(LoginRequiredMixin, CreateView):
     model = Department
     template_name = 'departments/create_department.html'
     form_class = DepartmentForm
-    success_url = '/department/list'
+    success_url = '/department/staff_list'
 
     def form_valid(self, form):
         user = self.request.user
@@ -66,6 +66,7 @@ class StaffCreateView(LoginRequiredMixin, CreateView):
         else:
             messages.error(self.request, "Ошибка: У вашего пользователя нет привязанной компании.")
             return redirect('/')  # Укажите страницу ошибки
+
 
 
 class StaffListView(LoginRequiredMixin, ListView):
