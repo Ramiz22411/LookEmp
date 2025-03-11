@@ -36,11 +36,11 @@
                                     <td>{{ bonus.comment }}</td>
                                     <td>{{ bonus.staff }}</td>
                                     <td>
-                                        <a href="{% url 'index'  %}"
+                                        <a href="{% url 'bonus_update' bonus.id %}"
                                            class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil"></i> <!-- Карандашик -->
                                         </a>
-                                        <form action="{% url 'index' %}" method="post"
+                                        <form action="{% url 'bonus_delete' bonus.id %}" method="post"
                                               style="display:inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger">

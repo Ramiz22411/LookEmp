@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form method="post" id="create_form" action="{% url 'transaction_update' payment.id %}" name="create_form"
+                    <form method="post" id="create_form" action="{% url 'bonus_update' bonus.id %}" name="create_form"
                           class="card-body row g-4">
                         {% csrf_token %}
                         {% for field in form %}

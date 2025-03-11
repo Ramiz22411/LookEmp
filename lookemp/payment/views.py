@@ -132,7 +132,6 @@ class CreatePaymentBonusAtomic(LoginRequiredMixin, CreateView):
 
         with transaction.atomic():
             quantity = form.cleaned_data['quantity']
-
             staff.balance += quantity
             staff.save()
         return super().form_valid(form)
@@ -146,10 +145,51 @@ class CreatePaymentBonusAtomic(LoginRequiredMixin, CreateView):
 
 
 class UpdateBonusTransactionView(LoginRequiredMixin, UpdateView):
-    template_name = 'payments/update_transaction.html'
+    template_name = 'payments/update_bonus.html'
     form_class = BonusPaymentTransactionAtomicForm
     model = BonusTransaction
+    context_object_name = 'bonus'
+    success_url = '/payment/bonus_list/'
+
+    def form_valid(self, form):
+        user_company = self.request.user.company
+        form.instance.company = user_company
+        new_staff = form.cleaned_data['staff']
+
+        if new_staff.company != user_company:
+            form.add_error('staff', 'Сотрудник не принадлежит вашей компании')
+            return super().form_valid(form)
+
+        old_bonus = self.get_object()
+        old_quantity = old_bonus.quantity
+        old_staff = old_bonus.staff
+
+        new_quantity = form.cleaned_data['quantity']
+
+        with transaction.atomic():
+            if new_staff == old_staff:
+                new_staff.balance = new_staff.balance - old_quantity + new_quantity
+                new_staff.save()
+            else:
+                old_staff.balance = old_staff.balance - old_quantity
+                old_staff.save()
+
+                new_staff.balance = new_staff.balance + new_quantity
+                new_staff.save()
+
+        return super().form_valid(form)
 
 
 class DeleteBonusTransactionView(LoginRequiredMixin, DeleteView):
-    pass
+    model = BonusTransaction
+    success_url = '/department/staff_list'
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        with transaction.atomic():
+            staff = self.object.staff
+            staff.balance -= self.object.quantity
+            staff.save()
+            return super().delete(request, *args, **kwargs)
+
+
