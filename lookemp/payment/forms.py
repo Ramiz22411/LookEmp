@@ -12,4 +12,4 @@ class PaymentTransactionAtomicForm(ModelForm):
 class BonusPaymentTransactionAtomicForm(ModelForm):
     class Meta:
         model = BonusTransaction
-        fields = ('quantity', 'comment', 'staff', 'company')
+        fields = ('quantity', 'comment', 'staff')

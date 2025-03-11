@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a6d28b9-554b-4330-9b7b-e150650a9751" name="Changes" comment="employees add department changed">
-      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/list_bonus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/list_transaction.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/update_transaction.html" afterDir="false" />
+    <list default="true" id="3a6d28b9-554b-4330-9b7b-e150650a9751" name="Changes" comment="update transactions">
+      <change afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/update_bonus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/departments/staff_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/departments/staff_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/payments/bonus.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/bonus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/payments/list_bonus.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/list_bonus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lookemp/core/templates/payments/list_transaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/payments/list_transaction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lookemp/core/templates/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/core/templates/sidebar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lookemp/department/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/department/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lookemp/payment/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lookemp/payment/forms.py" afterDir="false" />
@@ -196,6 +197,12 @@
       <workItem from="1740978894707" duration="4797000" />
       <workItem from="1741069923521" duration="1457000" />
       <workItem from="1741082501886" duration="8816000" />
+      <workItem from="1741153048296" duration="80000" />
+      <workItem from="1741167506024" duration="10096000" />
+      <workItem from="1741338827488" duration="8615000" />
+      <workItem from="1741409934479" duration="125000" />
+      <workItem from="1741674431577" duration="502000" />
+      <workItem from="1741678028973" duration="658000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -245,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740804667743</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update transactions">
+      <option name="closed" value="true" />
+      <created>1741153093440</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741153093440</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +272,8 @@
     <MESSAGE value="updated user creation" />
     <MESSAGE value="small fix" />
     <MESSAGE value="employees add department changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="employees add department changed" />
+    <MESSAGE value="update transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="update transactions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

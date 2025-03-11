@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="lookemp_db@localhost" uuid="21faf89a-d626-4311-9038-f3cc608f2e2c">
+    <data-source source="LOCAL" name="lookemp_db@localhost" uuid="1d5649ad-ee1f-47fc-967f-b94a60929810">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+
+from department.models import Staff
 from .models import BonusTransaction, PaymentTransaction
 from .forms import PaymentTransactionAtomicForm, BonusPaymentTransactionAtomicForm
 
@@ -12,16 +14,20 @@ class ListTransactionView(LoginRequiredMixin, ListView):
     template_name = 'payments/list_transaction.html'
     context_object_name = 'payments'
 
+    def queryset(self):
+        return PaymentTransaction.objects.filter(company=self.request.user.company)
+
 
 class UpdateTransactionView(LoginRequiredMixin, UpdateView):
     template_name = 'payments/update_transaction.html'
     form_class = PaymentTransactionAtomicForm
     model = PaymentTransaction
     context_object_name = 'payment'
-    success_url = '/transaction_list/'
+    success_url = '/payment/transaction_list/'
 
     def form_valid(self, form):
         user_company = self.request.user.company
+        form.instance.company = user_company
         new_staff = form.cleaned_data['staff']
 
         if new_staff.company != user_company:
@@ -55,13 +61,14 @@ class UpdateTransactionView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class CreatePaymentTransactionAtomic(CreateView):
+class CreatePaymentTransactionAtomic(LoginRequiredMixin, CreateView):
     form_class = PaymentTransactionAtomicForm
     template_name = 'payments/payment.html'
     success_url = '/department/staff_list'
 
     def form_valid(self, form):
         user_company = self.request.user.company
+        form.instance.company = user_company
         staff = form.cleaned_data['staff']
 
         if staff.company != user_company:
@@ -79,21 +86,70 @@ class CreatePaymentTransactionAtomic(CreateView):
             staff.save()
         return super().form_valid(form)
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        user = self.request.user
+        if hasattr(user, 'company'):
+            form.fields['staff'].queryset = Staff.objects.filter(company=user.company)
+        return form
 
-class ListBonusPaymentView(ListView):
+
+class DeleteTransactionView(LoginRequiredMixin, DeleteView):
+    success_url = '/department/staff_list'
+    model = PaymentTransaction
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        with transaction.atomic():
+            staff = self.object.staff
+            staff.balance += self.object.quantity
+            staff.save()
+            return super().delete(request, *args, **kwargs)
+
+
+class ListBonusPaymentView(LoginRequiredMixin, ListView):
     model = BonusTransaction
-    template_name = ''
+    template_name = 'payments/list_bonus.html'
     context_object_name = 'bonuses'
 
+    def queryset(self):
+        return BonusTransaction.objects.filter(company=self.request.user.company)
 
-class CreatePaymentBonusAtomic(CreateView):
+
+class CreatePaymentBonusAtomic(LoginRequiredMixin, CreateView):
     form_class = BonusPaymentTransactionAtomicForm
     template_name = 'payments/bonus.html'
+    success_url = '/department/staff_list'
 
     def form_valid(self, form):
+        user_company = self.request.user.company
+        form.instance.company = user_company
+        staff = form.cleaned_data['staff']
+
+        if staff.company != user_company:
+            form.add_error('staff', 'Сотрудник не принадлежит вашей компании')
+            return super().form_invalid(form)
+
         with transaction.atomic():
-            staff = form.cleaned_data['staff']
             quantity = form.cleaned_data['quantity']
 
             staff.balance += quantity
-            return super().form_valid(form)
+            staff.save()
+        return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        user = self.request.user
+        if hasattr(user, 'company'):
+            form.fields['staff'].queryset = Staff.objects.filter(company=user.company)
+        return form
+
+
+class UpdateBonusTransactionView(LoginRequiredMixin, UpdateView):
+    template_name = 'payments/update_transaction.html'
+    form_class = BonusPaymentTransactionAtomicForm
+    model = BonusTransaction
+
+
+class DeleteBonusTransactionView(LoginRequiredMixin, DeleteView):
+    pass
